@@ -3,10 +3,21 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
+import { createStore, applyMiddleware } from "redux";
+import { Provider } from "react-redux";
+import thunk from "redux-thunk";
+import rootReducer from "./Redux/Reducers";
+import logger from "redux-logger";
+import { composeWithDevTools } from "redux-devtools-extension";
+const middleware = [thunk, logger];
+const composeEnacher = composeWithDevTools({ trace: true, traceLimit: 25 })
+const store = createStore(rootReducer, composeEnacher(applyMiddleware(...middleware)));
 
 ReactDOM.render(
   <React.StrictMode>
-    <App />
+    <Provider store={store}>
+      <App />
+    </Provider>
   </React.StrictMode>,
   document.getElementById('root')
 );
