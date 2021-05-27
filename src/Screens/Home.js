@@ -1,9 +1,14 @@
-import React from 'react'
+import { useState } from 'react'
+import { useDispatch, useSelector } from 'react-redux'
 
-export default function Home() {
+
+const Home = () => {
+    let dispatch = useDispatch()
     return (
         <div>
-
+            home
         </div>
     )
 }
+
+export default Home
