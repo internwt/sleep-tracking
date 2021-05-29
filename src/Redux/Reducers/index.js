@@ -1,8 +1,8 @@
 import { combineReducers } from "redux";
-
+import { UserAuthenicationReducer } from "./UserAuthenicationReducer";
 
 const appReducer = combineReducers({
-
+    UserAuthenicationReducer
 });
 
 

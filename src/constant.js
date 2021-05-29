@@ -1,5 +1,9 @@
+export const signup = 'signup';
+export const login = 'login';
+export const home = 'home';
+
 export let formFields = {
-    "signup": [
+    [signup]: [
         {
             label: 'name',
             name: 'name',
@@ -20,7 +24,7 @@ export let formFields = {
             placeholder: 'Password'
         },
     ],
-    "login": [
+    [login]: [
         {
             label: 'email',
             name: 'email',
