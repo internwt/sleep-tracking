@@ -1,42 +1,49 @@
 import { useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { formFields } from '../constant'
-import InputField from '../Components/InputField'
 import { userAction } from '../Redux/Actions/UserAction'
+import Form from '../Components/Form'
+import { formFields } from '../constant'
+import { LOGIN, SIGNUP } from '../Redux/actionType'
 
-function Form(props) {
-    let [fieldValue, setFieldValue] = useState()
+function Pages(props) {
+    let [fieldValue, setFieldValue] = useState({})
     let dispatch = useDispatch()
     let { page } = props
     let newForm = formFields[page]
+    let [pageFields, setPageField] = useState(newForm)
 
     const handleChange = (e, name) => {
-        setFieldValue({ ...fieldValue, [name]: e.target.value })
+        let findField = pageFields.find((field, index) => field.name === name)
+        findField['value'] = e.target.value
+        let otherField = pageFields.filter((field, index) => field.name !== name)
+        setPageField([...otherField, findField])
     }
 
     const handleSubmit = (e) => {
         e.preventDefault()
-        dispatch(userAction(page.toUpperCase(), fieldValue))
+        if (validateForm()) {
+            dispatch(userAction(`${page.toUpperCase()}`, fieldValue))
+        }
+    }
+    console.log(`fieldsva`, pageFields)
+
+    const validateForm = () => {
+        let flag = false
+
     }
 
-    if (!newForm) {
-        return <div>page not found</div>
-    }
 
     return (
         <div>
-            <h1>{page}</h1>
-            <form onSubmit={handleSubmit}>
-                {newForm.map((field, index) => <InputField
-                    key={index}
-                    {...field}
-                    handleChange={handleChange}
-                />)
-                }
-                <button type="submit">{page}</button>
-            </form>
+            <Form
+                newForm={pageFields}
+                page={page}
+                {...fieldValue}
+                handleChange={handleChange}
+                handleSubmit={handleSubmit}
+            />
         </div>
     )
 }
 
-export default Form
+export default Pages

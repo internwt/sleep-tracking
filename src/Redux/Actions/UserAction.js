@@ -1,26 +1,38 @@
 import { SIGNUP, LOGIN } from '../actionType'
 
-const createUser = (user) => {
+
+
+export const createUser = (user) => {
     const setUser = localStorage.setItem('user', JSON.stringify(user))
 }
 
-const getUserDetails = (user) => {
+export const getUserDetails = (user) => {
     return localStorage.getItem('user')
 }
 
-export const userAction = (type, user) => async (dispatch) => {
-    console.log(`type,`, type, user)
-    if (type === SIGNUP) {
-        createUser(user)
-    }
-    if (type === LOGIN) {
-        const isUser = getUserDetails(user)
-        // user login successfull
-        if (isUser) {
+export const userAction = (type, data) => async (dispatch) => {
+    console.log(`type,data`, type, data)
+    switch (type) {
+        case SIGNUP:
+            return signupAction(type, data)
+        case LOGIN:
+            return dispatch(loginAction(type, data))
+        default:
+            return;
 
-        } else {
-            console.log(`please try again`)
-        }
     }
 
+}
+
+
+export const signupAction = (type, user) => async (dispatch) => {
+    console.log(`hello world`)
+}
+
+export const loginAction = (type, user) => async (dispatch) => {
+    console.log(`login actions`)
+}
+
+export const resetPasswordAction = (type, user) => async (dispatch) => {
+    console.log(`resetPasswordAction`)
 }

@@ -1,8 +1,9 @@
 import { combineReducers } from "redux";
 import { UserAuthenicationReducer } from "./UserAuthenicationReducer";
-
+import { sleepTimeReducer } from "./SleepTimeReducer"
 const appReducer = combineReducers({
-    UserAuthenicationReducer
+    UserAuthenicationReducer,
+    sleepTimeReducer
 });
 
 

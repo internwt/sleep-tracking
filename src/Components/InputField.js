@@ -1,11 +1,16 @@
-import React, { useState } from 'react'
-
-function InputField({ label, type, placeholder, name, handleChange }) {
-
+const InputField = ({ label, type, placeholder, name, handleChange, error, value, ...props }) => {
+    console.log(`props,`, props)
     return (
         <div>
             <label>{label}</label>
-            <input type={type} placeholder={placeholder} onChange={(e) => handleChange(e, name)} />
+            <input
+                type={type}
+                placeholder={placeholder}
+                name={name}
+                onChange={(e) => handleChange(e, name)}
+                value={value}
+            />
+            {error}
         </div>
     )
 }

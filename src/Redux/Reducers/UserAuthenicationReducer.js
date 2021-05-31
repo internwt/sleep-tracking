@@ -1,15 +1,11 @@
-
+import { SLEEP_TIME, SIGNUP, LOGIN } from '../actionType'
 let state = {
     signUp: false,
 }
 
 export const UserAuthenicationReducer = (state = {}, action) => {
     switch (action.type) {
-        case "SIGNUP":
-            let user = localStorage.getItem('email', 'singeht')
-            if (!user) {
-
-            }
+        case SIGNUP:
             return {
                 signUp: !state.signUp
             }
